@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 
@@ -27,7 +29,7 @@ const Header = ({ currentUser }) => (
                 <div className='options' onClick={()=> auth.signOut()} >SIGN OUT</div>
                 :
                 <Link className='options
-                ' to='/signin'>SIGN In</Link>
+                ' to='/signin'>SIGN IN</Link>
             }
 
         </div>
@@ -35,5 +37,10 @@ const Header = ({ currentUser }) => (
     </div>
 )
 
+const mapStateToProps = state => (
+    {
+       currentUser: state.user.currentUser
+    }
+);
 
-export default Header;
+export default connect(mapStateToProps)(Header);
